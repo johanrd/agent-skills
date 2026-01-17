@@ -1,0 +1,112 @@
+---
+name: ember-best-practices
+description: Ember.js performance optimization and accessibility guidelines. This skill should be used when writing, reviewing, or refactoring Ember.js code to ensure optimal performance patterns and accessibility. Triggers on tasks involving Ember components, routes, data fetching, bundle optimization, or accessibility improvements.
+license: MIT
+metadata:
+  author: Ember.js Community
+  version: "1.0.0"
+---
+
+# Ember.js Best Practices
+
+Comprehensive performance optimization and accessibility guide for Ember.js applications. Contains 20+ rules across 7 categories, prioritized by impact to guide automated refactoring and code generation.
+
+## When to Apply
+
+Reference these guidelines when:
+- Writing new Ember components or routes
+- Implementing data fetching with Ember Data
+- Reviewing code for performance issues
+- Refactoring existing Ember.js code
+- Optimizing bundle size or load times
+- Implementing accessibility features
+
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 1 | Route Loading and Data Fetching | CRITICAL | `route-` |
+| 2 | Build and Bundle Optimization | CRITICAL | `bundle-` |
+| 3 | Component and Reactivity | HIGH | `component-` |
+| 4 | Accessibility Best Practices | HIGH | `a11y-` |
+| 5 | Service and State Management | MEDIUM-HIGH | `service-` |
+| 6 | Template Optimization | MEDIUM | `template-` |
+| 7 | Advanced Patterns | LOW-MEDIUM | `advanced-` |
+
+## Quick Reference
+
+### 1. Route Loading and Data Fetching (CRITICAL)
+
+- `route-parallel-model` - Use RSVP.hash() for parallel data loading
+- `route-loading-substates` - Implement loading substates for better UX
+- `route-lazy-routes` - Use route-based code splitting with Embroider
+
+### 2. Build and Bundle Optimization (CRITICAL)
+
+- `bundle-direct-imports` - Import directly, avoid entire namespaces
+- `bundle-embroider-static` - Enable Embroider static mode for tree-shaking
+- `bundle-lazy-dependencies` - Lazy load heavy dependencies
+
+### 3. Component and Reactivity Optimization (HIGH)
+
+- `component-use-glimmer` - Use Glimmer components over classic components
+- `component-cached-getters` - Use @cached for expensive computations
+- `component-minimal-tracking` - Only track properties that affect rendering
+- `component-tracked-toolbox` - Use tracked-built-ins for complex state
+
+### 4. Accessibility Best Practices (HIGH)
+
+- `a11y-automated-testing` - Use ember-a11y-testing for automated checks
+- `a11y-semantic-html` - Use semantic HTML and proper ARIA attributes
+- `a11y-keyboard-navigation` - Ensure full keyboard navigation support
+- `a11y-form-labels` - Associate labels with inputs, announce errors
+- `a11y-route-announcements` - Announce route transitions to screen readers
+
+### 5. Service and State Management (MEDIUM-HIGH)
+
+- `service-cache-responses` - Cache API responses in services
+- `service-shared-state` - Use services for shared state
+- `service-ember-data-optimization` - Optimize Ember Data queries
+
+### 6. Template Optimization (MEDIUM)
+
+- `template-let-helper` - Use {{#let}} to avoid recomputation
+- `template-each-key` - Use {{#each}} with @key for efficient list updates
+- `template-avoid-computation` - Move expensive work to cached getters
+
+### 7. Advanced Patterns (LOW-MEDIUM)
+
+- `advanced-modifiers` - Use modifiers for DOM side effects
+- `advanced-helpers` - Extract reusable logic into helpers
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/route-parallel-model.md
+rules/bundle-embroider-static.md
+rules/a11y-automated-testing.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- Incorrect code example with explanation
+- Correct code example with explanation
+- Additional context and references
+
+## Accessibility with OSS Tools
+
+Ember has excellent accessibility support through community addons:
+
+- **ember-a11y-testing** - Automated accessibility testing in your test suite
+- **ember-a11y** - Route announcements and focus management
+- **ember-focus-trap** - Focus trapping for modals and dialogs
+- **ember-page-title** - Accessible page title management
+- **ember-changeset-validations** - Accessible form validation
+
+These tools provide comprehensive a11y support with minimal configuration.
+
+## Full Compiled Document
+
+For the complete guide with all rules expanded: `AGENTS.md`

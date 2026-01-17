@@ -1,0 +1,143 @@
+---
+title: Keyboard Navigation Support
+impact: HIGH
+impactDescription: Critical for keyboard-only users
+tags: accessibility, a11y, keyboard, focus-management
+---
+
+## Keyboard Navigation Support
+
+Ensure all interactive elements are keyboard accessible and focus management is handled properly, especially in modals and dynamic content.
+
+**Incorrect (no keyboard support):**
+
+```handlebars
+<div class="dropdown" {{on "click" this.toggleMenu}}>
+  Menu
+  {{#if this.isOpen}}
+    <div class="dropdown-menu">
+      <div {{on "click" this.selectOption}}>Option 1</div>
+      <div {{on "click" this.selectOption}}>Option 2</div>
+    </div>
+  {{/if}}
+</div>
+```
+
+**Correct (full keyboard support):**
+
+```handlebars
+<div class="dropdown">
+  <button 
+    type="button"
+    {{on "click" this.toggleMenu}}
+    {{on "keydown" this.handleButtonKeyDown}}
+    aria-haspopup="true"
+    aria-expanded="{{this.isOpen}}"
+  >
+    Menu
+  </button>
+  
+  {{#if this.isOpen}}
+    <ul 
+      class="dropdown-menu" 
+      role="menu"
+      {{did-insert this.focusFirstItem}}
+      {{on "keydown" this.handleMenuKeyDown}}
+    >
+      <li role="menuitem">
+        <button type="button" {{on "click" (fn this.selectOption "1")}}>
+          Option 1
+        </button>
+      </li>
+      <li role="menuitem">
+        <button type="button" {{on "click" (fn this.selectOption "2")}}>
+          Option 2
+        </button>
+      </li>
+    </ul>
+  {{/if}}
+</div>
+```
+
+```javascript
+// app/components/dropdown.js
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+export default class DropdownComponent extends Component {
+  @tracked isOpen = false;
+  
+  @action
+  toggleMenu() {
+    this.isOpen = !this.isOpen;
+  }
+  
+  @action
+  handleButtonKeyDown(event) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.isOpen = true;
+    }
+  }
+  
+  @action
+  handleMenuKeyDown(event) {
+    if (event.key === 'Escape') {
+      this.isOpen = false;
+      // Return focus to button
+      event.target.closest('.dropdown').querySelector('button').focus();
+    }
+    // Handle arrow key navigation between menu items
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.moveFocus(event.key === 'ArrowDown' ? 1 : -1);
+    }
+  }
+  
+  @action
+  focusFirstItem(element) {
+    element.querySelector('[role="menuitem"] button')?.focus();
+  }
+  
+  moveFocus(direction) {
+    const items = Array.from(
+      document.querySelectorAll('[role="menuitem"] button')
+    );
+    const currentIndex = items.indexOf(document.activeElement);
+    const nextIndex = (currentIndex + direction + items.length) % items.length;
+    items[nextIndex]?.focus();
+  }
+  
+  @action
+  selectOption(value) {
+    this.args.onSelect?.(value);
+    this.isOpen = false;
+  }
+}
+```
+
+**For focus trapping in modals, use ember-focus-trap:**
+
+```bash
+ember install ember-focus-trap
+```
+
+```handlebars
+{{#if this.showModal}}
+  <FocusTrap 
+    @isActive={{true}}
+    @initialFocus="#modal-title"
+  >
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">{{@title}}</h2>
+      {{yield}}
+      <button type="button" {{on "click" this.closeModal}}>Close</button>
+    </div>
+  </FocusTrap>
+{{/if}}
+```
+
+Proper keyboard navigation ensures all users can interact with your application effectively.
+
+Reference: [Ember Accessibility - Keyboard](https://guides.emberjs.com/release/accessibility/keyboard/)
