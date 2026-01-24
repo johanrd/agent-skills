@@ -182,7 +182,7 @@ module('Integration | Component | async-button', function(hooks) {
     resolveTask();
     // No need to call settled() - ember-concurrency's test waiters handle this
     
-    assert.dom('[data-test-button]').doesNotExist('[disabled]');
+    assert.dom('[data-test-button]').doesNotHaveAttribute('disabled');
     assert.dom('[data-test-loading-spinner]').doesNotExist();
     assert.dom('[data-test-button]').hasText('Save');
   });

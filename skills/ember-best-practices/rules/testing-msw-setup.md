@@ -122,6 +122,8 @@ module('Acceptance | users', function(hooks) {
 ### Mocking POST/PUT/DELETE Requests
 
 ```javascript
+import { visit, click, fillIn } from '@ember/test-helpers';
+
 test('creates a new user', async function(assert) {
   let capturedRequest = null;
   
