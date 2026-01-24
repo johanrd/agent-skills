@@ -16,7 +16,7 @@ Use ember-resources for declarative data management with automatic cleanup and l
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class LiveDataComponent extends Component {
+class LiveData extends Component {
   @tracked data = null;
   intervalId = null;
   
@@ -51,7 +51,7 @@ export default class LiveDataComponent extends Component {
 import Component from '@glimmer/component';
 import { resource } from 'ember-resources';
 
-export default class LiveDataComponent extends Component {
+class LiveData extends Component {
   data = resource(({ on }) => {
     const poll = async () => {
       const response = await fetch('/api/data');
@@ -93,7 +93,7 @@ const UserData = resourceFactory((userId) =>
   })
 );
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   userData = UserData(() => this.args.userId);
 
   <template>

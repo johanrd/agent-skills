@@ -37,7 +37,7 @@ export default Component.extend({
 // app/components/user-card.gjs
 import Component from '@glimmer/component';
 
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   get fullName() {
     return `${this.args.user.firstName} ${this.args.user.lastName}`;
   }

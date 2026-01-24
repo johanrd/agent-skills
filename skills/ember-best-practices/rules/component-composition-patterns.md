@@ -15,7 +15,7 @@ Use component composition with yield blocks, named blocks, and contextual compon
 // app/components/user-card.gjs
 import Component from '@glimmer/component';
 
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   <template>
     <div class="user-card">
       <div class="header">
@@ -48,7 +48,7 @@ export default class UserCardComponent extends Component {
 // app/components/user-card.gjs
 import Component from '@glimmer/component';
 
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   <template>
     <div class="user-card" ...attributes>
       {{#if (has-block "header")}}
@@ -146,7 +146,7 @@ class Cell extends Component {
   </template>
 }
 
-export default class DataTableComponent extends Component {
+class DataTable extends Component {
   <template>
     <table class="data-table">
       {{yield (hash
@@ -196,7 +196,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { hash } from '@ember/helper';
 
-export default class DropdownComponent extends Component {
+class Dropdown extends Component {
   @tracked isOpen = false;
   
   @action

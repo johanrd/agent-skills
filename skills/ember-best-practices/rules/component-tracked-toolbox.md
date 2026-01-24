@@ -16,7 +16,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class TodoListComponent extends Component {
+class TodoList extends Component {
   @tracked items = []; // Entire array replaced on every change
   
   @action
@@ -40,7 +40,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { TrackedArray } from 'tracked-built-ins';
 
-export default class TodoListComponent extends Component {
+class TodoList extends Component {
   items = new TrackedArray([]);
   
   @action
@@ -62,7 +62,7 @@ export default class TodoListComponent extends Component {
 ```javascript
 import { TrackedMap, TrackedSet } from 'tracked-built-ins';
 
-export default class CacheComponent extends Component {
+class Cache extends Component {
   cache = new TrackedMap(); // Fine-grained reactivity per key
   selected = new TrackedSet(); // Fine-grained reactivity per item
 }

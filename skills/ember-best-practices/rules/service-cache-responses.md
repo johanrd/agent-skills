@@ -14,7 +14,7 @@ Cache API responses in services to avoid duplicate network requests. Use tracked
 ```javascript
 // app/services/user.js
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class UserService extends Service {
   @service store;
@@ -31,7 +31,7 @@ export default class UserService extends Service {
 ```javascript
 // app/services/user.js
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { TrackedMap } from 'tracked-built-ins';
 

@@ -21,7 +21,7 @@ import { action } from '@ember/object';
 import * as lodash from 'lodash';
 import * as moment from 'moment';
 
-export default class MyComponent extends Component {
+class My extends Component {
   someMethod() {
     return lodash.debounce(this.handler, 300);
   }
@@ -37,7 +37,7 @@ import { action } from '@ember/object';
 import debounce from 'lodash/debounce';
 import dayjs from 'dayjs'; // moment alternative, smaller
 
-export default class MyComponent extends Component {
+class My extends Component {
   someMethod() {
     return debounce(this.handler, 300);
   }
@@ -52,7 +52,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { debounce } from '@ember/runloop';
 
-export default class MyComponent extends Component {
+class My extends Component {
   someMethod() {
     return debounce(this, this.handler, 300);
   }

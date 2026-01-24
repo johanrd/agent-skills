@@ -29,7 +29,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class UserGreetingComponent extends Component {
+class UserGreeting extends Component {
   @tracked displayName = '';
   
   @action
@@ -52,7 +52,7 @@ export default class UserGreetingComponent extends Component {
 // app/components/user-greeting.gjs
 import Component from '@glimmer/component';
 
-export default class UserGreetingComponent extends Component {
+class UserGreeting extends Component {
   // Automatically reactive - updates when args change
   get displayName() {
     return `${this.args.user.firstName} ${this.args.user.lastName}`;
@@ -73,7 +73,7 @@ export default class UserGreetingComponent extends Component {
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class UserStatsComponent extends Component {
+class UserStats extends Component {
   @cached
   get sortedPosts() {
     // Expensive computation only runs when @posts changes
@@ -118,7 +118,7 @@ For DOM side effects, element setup, or cleanup, use custom modifiers:
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class ChartComponent extends Component {
+class Chart extends Component {
   chartInstance = null;
   
   @action
@@ -177,7 +177,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   @tracked userData = null;
   @tracked loading = true;
   controller = new AbortController();
@@ -253,7 +253,7 @@ export default class UserDataResource extends Resource {
 import Component from '@glimmer/component';
 import UserDataResource from '../resources/user-data';
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   userData = UserDataResource.from(this, () => [this.args.userId]);
 
   <template>

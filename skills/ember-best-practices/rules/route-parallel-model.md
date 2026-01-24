@@ -14,7 +14,7 @@ When fetching multiple independent data sources in a route's model hook, use `Pr
 ```javascript
 // app/routes/dashboard.js
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class DashboardRoute extends Route {
   @service store;
@@ -34,7 +34,7 @@ export default class DashboardRoute extends Route {
 ```javascript
 // app/routes/dashboard.js
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { hash } from 'rsvp';
 
 export default class DashboardRoute extends Route {

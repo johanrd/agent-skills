@@ -15,7 +15,7 @@ Validate component arguments for better error messages, documentation, and type 
 // app/components/user-card.gjs
 import Component from '@glimmer/component';
 
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   <template>
     <div class="user-card">
       <h3>{{@user.name}}</h3>
@@ -46,7 +46,7 @@ interface UserCardSignature {
   Element: HTMLDivElement;
 }
 
-export default class UserCardComponent extends Component<UserCardSignature> {
+class UserCard extends Component<UserCardSignature> {
   <template>
     <div class="user-card" ...attributes>
       <h3>{{@user.name}}</h3>
@@ -73,7 +73,7 @@ export default class UserCardComponent extends Component<UserCardSignature> {
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 
-export default class DataTableComponent extends Component {
+class DataTable extends Component {
   constructor(owner, args) {
     super(owner, args);
     
@@ -155,7 +155,7 @@ import Component from '@glimmer/component';
  * @param {string} [args.title] - Optional modal title
  * @param {string} [args.size='medium'] - Modal size: 'small', 'medium', 'large'
  */
-export default class ModalComponent extends Component {
+class Modal extends Component {
   <template>
     {{#if @isOpen}}
       <div class="modal modal-{{if @size @size "medium"}}">

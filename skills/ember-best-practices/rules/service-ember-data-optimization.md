@@ -84,7 +84,7 @@ export default class PostRoute extends Route {
 
 ```javascript
 // app/components/user-badge.js
-export default class UserBadgeComponent extends Component {
+class UserBadge extends Component {
   @service store;
   
   get user() {

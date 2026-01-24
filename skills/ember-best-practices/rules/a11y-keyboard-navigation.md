@@ -46,7 +46,7 @@ import { action } from '@ember/object';
 import { fn } from '@ember/helper';
 import focusFirst from '../modifiers/focus-first';
 
-export default class DropdownComponent extends Component {
+class Dropdown extends Component {
   @tracked isOpen = false;
   
   @action

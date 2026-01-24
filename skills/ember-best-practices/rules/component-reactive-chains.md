@@ -17,7 +17,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class ShoppingCartComponent extends Component {
+class ShoppingCart extends Component {
   @tracked items = [];
   @tracked subtotal = 0;
   @tracked tax = 0;
@@ -63,7 +63,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { TrackedArray } from 'tracked-built-ins';
 
-export default class ShoppingCartComponent extends Component {
+class ShoppingCart extends Component {
   @tracked items = new TrackedArray([]);
   
   // Base calculation
@@ -137,7 +137,7 @@ export default class ShoppingCartComponent extends Component {
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class DataAnalysisComponent extends Component {
+class DataAnalysis extends Component {
   // Base data
   get rawData() {
     return this.args.data || [];
@@ -211,7 +211,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { cached } from '@glimmer/tracking';
 
-export default class FilteredListComponent extends Component {
+class FilteredList extends Component {
   @tracked searchTerm = '';
   @tracked selectedCategory = 'all';
   @tracked sortDirection = 'asc';

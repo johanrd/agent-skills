@@ -61,7 +61,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import XIcon from './x-icon';
 
-export default class CustomButtonComponent extends Component {
+class CustomButton extends Component {
   @action
   handleKeyDown(event) {
     // Support Enter and Space keys for keyboard users

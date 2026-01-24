@@ -16,7 +16,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class FormComponent extends Component {
+class Form extends Component {
   @tracked firstName = ''; // Used in template ✓
   @tracked lastName = '';  // Used in template ✓
   @tracked _formId = Date.now(); // Internal, never rendered ✗
@@ -37,7 +37,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class FormComponent extends Component {
+class Form extends Component {
   @tracked firstName = ''; // Rendered in template
   @tracked lastName = '';  // Rendered in template
   @tracked isValid = false; // Rendered status

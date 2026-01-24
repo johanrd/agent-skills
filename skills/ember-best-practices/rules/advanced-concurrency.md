@@ -17,7 +17,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class SearchComponent extends Component {
+class Search extends Component {
   @tracked results = [];
   @tracked isSearching = false;
   @tracked error = null;
@@ -65,7 +65,7 @@ export default class SearchComponent extends Component {
 import Component from '@glimmer/component';
 import { task, restartableTask } from 'ember-concurrency';
 
-export default class SearchComponent extends Component {
+class Search extends Component {
   searchTask = restartableTask(async (query) => {
     const response = await fetch(`/api/search?q=${query}`);
     return response.json();
@@ -100,7 +100,7 @@ export default class SearchComponent extends Component {
 import Component from '@glimmer/component';
 import { restartableTask, timeout } from 'ember-concurrency';
 
-export default class AutocompleteComponent extends Component {
+class Autocomplete extends Component {
   searchTask = restartableTask(async (query) => {
     // Debounce
     await timeout(300);

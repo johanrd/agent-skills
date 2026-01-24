@@ -14,7 +14,7 @@ Use `@cached` from `@glimmer/tracking` to memoize expensive computations that de
 ```javascript
 import Component from '@glimmer/component';
 
-export default class DataTableComponent extends Component {
+class DataTable extends Component {
   get filteredAndSortedData() {
     // Expensive: runs on every access, even if nothing changed
     return this.args.data
@@ -31,7 +31,7 @@ export default class DataTableComponent extends Component {
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class DataTableComponent extends Component {
+class DataTable extends Component {
   @cached
   get filteredAndSortedData() {
     // Computed once per unique combination of dependencies

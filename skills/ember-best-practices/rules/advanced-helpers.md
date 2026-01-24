@@ -13,7 +13,7 @@ Extract reusable template logic into helper functions that can be tested indepen
 
 ```javascript
 // app/components/user-card.js
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   get formattedDate() {
     const date = new Date(this.args.user.createdAt);
     const now = new Date();
@@ -28,7 +28,7 @@ export default class UserCardComponent extends Component {
 }
 
 // app/components/post-card.js - same logic duplicated!
-export default class PostCardComponent extends Component {
+class PostCard extends Component {
   get formattedDate() {
     // Same implementation...
   }
@@ -79,7 +79,7 @@ import { formatRelativeDate } from '../helpers/format-relative-date';
 ```javascript
 // app/helpers/format-currency.js
 import Helper from '@ember/component/helper';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class FormatCurrencyHelper extends Helper {
   @service intl;

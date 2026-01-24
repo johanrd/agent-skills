@@ -86,7 +86,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 
-export default class UserFormComponent extends Component {
+class UserForm extends Component {
   @tracked errorMessages = {};
   
   validateEmail = (input) => {

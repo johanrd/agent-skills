@@ -53,9 +53,9 @@ export default class ThemeService extends Service {
 ```javascript
 // app/components/header.js
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
-export default class HeaderComponent extends Component {
+class Header extends Component {
   @service theme;
   
   // Access theme.currentTheme directly
@@ -65,9 +65,9 @@ export default class HeaderComponent extends Component {
 ```javascript
 // app/components/sidebar.js
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
-export default class SidebarComponent extends Component {
+class Sidebar extends Component {
   @service theme;
   
   // Access theme.currentTheme directly
@@ -81,7 +81,7 @@ Services provide centralized state management with automatic reactivity through 
 ```javascript
 // app/services/cart.js
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { TrackedArray } from 'tracked-built-ins';
 import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';

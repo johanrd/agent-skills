@@ -15,9 +15,9 @@ Use class fields for clean component composition, initialization, and dependency
 // app/components/data-manager.gjs
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
-export default class DataManagerComponent extends Component {
+class DataManager extends Component {
   constructor() {
     super(...arguments);
     
@@ -56,7 +56,7 @@ import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
 import { resource } from 'ember-resources';
 
-export default class DataManagerComponent extends Component {
+class DataManager extends Component {
   // Service injection as class fields
   @service store;
   @service router;
@@ -97,7 +97,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { TrackedObject } from 'tracked-built-ins';
 
-export default class FormContainerComponent extends Component {
+class FormContainer extends Component {
   // Compose form state
   @tracked formData = new TrackedObject({
     firstName: '',
@@ -198,7 +198,7 @@ import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 import { PaginationState } from '../utils/pagination-mixin';
 
-export default class PaginatedListComponent extends Component {
+class PaginatedList extends Component {
   // Compose pagination functionality
   pagination = new PaginationState();
   
@@ -290,7 +290,7 @@ export class SelectionState {
 import Component from '@glimmer/component';
 import { SelectionState } from '../utils/selection-state';
 
-export default class SelectableListComponent extends Component {
+class SelectableList extends Component {
   // Compose selection behavior
   selection = new SelectionState();
   

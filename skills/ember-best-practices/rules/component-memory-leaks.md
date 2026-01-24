@@ -16,7 +16,7 @@ Properly clean up event listeners, timers, and subscriptions to prevent memory l
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class LiveClockComponent extends Component {
+class LiveClock extends Component {
   @tracked time = new Date();
   
   constructor() {
@@ -42,7 +42,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
 
-export default class LiveClockComponent extends Component {
+class LiveClock extends Component {
   @tracked time = new Date();
   
   constructor() {
@@ -72,7 +72,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
 
-export default class WindowSizeComponent extends Component {
+class WindowSize extends Component {
   @tracked width = window.innerWidth;
   @tracked height = window.innerHeight;
   
@@ -119,7 +119,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import windowListener from '../modifiers/window-listener';
 
-export default class ResizeAwareComponent extends Component {
+class ResizeAware extends Component {
   @tracked size = { width: 0, height: 0 };
   
   handleResize = () => {
@@ -145,7 +145,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
 
-export default class DataLoaderComponent extends Component {
+class DataLoader extends Component {
   @tracked data = null;
   abortController = new AbortController();
   
@@ -187,7 +187,7 @@ export default class DataLoaderComponent extends Component {
 import Component from '@glimmer/component';
 import { resource } from 'ember-resources';
 
-export default class WebsocketDataComponent extends Component {
+class WebsocketData extends Component {
   messages = resource(({ on }) => {
     const messages = [];
     const ws = new WebSocket('wss://example.com/socket');

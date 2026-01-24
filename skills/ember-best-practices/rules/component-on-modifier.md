@@ -16,7 +16,7 @@ Use the `{{on}}` modifier for event handling instead of traditional action handl
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class ButtonComponent extends Component {
+class Button extends Component {
   @action
   handleClick() {
     this.args.onClick?.();
@@ -37,7 +37,7 @@ export default class ButtonComponent extends Component {
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 
-export default class ButtonComponent extends Component {
+class Button extends Component {
   handleClick = () => {
     this.args.onClick?.();
   }
@@ -57,7 +57,7 @@ export default class ButtonComponent extends Component {
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 
-export default class ScrollTrackerComponent extends Component {
+class ScrollTracker extends Component {
   handleScroll = (event) => {
     console.log('Scroll position:', event.target.scrollTop);
   }
@@ -81,7 +81,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 
-export default class InputFieldComponent extends Component {
+class InputField extends Component {
   @tracked isFocused = false;
   
   handleFocus = () => {

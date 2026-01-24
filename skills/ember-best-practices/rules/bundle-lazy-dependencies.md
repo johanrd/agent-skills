@@ -16,7 +16,7 @@ import Component from '@glimmer/component';
 import Chart from 'chart.js/auto'; // 300KB library loaded immediately
 import hljs from 'highlight.js'; // 500KB library loaded immediately
 
-export default class DashboardComponent extends Component {
+class Dashboard extends Component {
   get showChart() {
     return this.args.hasData;
   }
@@ -30,7 +30,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
-export default class DashboardComponent extends Component {
+class Dashboard extends Component {
   @tracked ChartComponent = null;
   @tracked highlighter = null;
 

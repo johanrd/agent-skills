@@ -15,7 +15,7 @@ Use strict mode and template-only components for simpler, safer code with better
 // app/components/user-card.gjs
 import Component from '@glimmer/component';
 
-export default class UserCardComponent extends Component {
+class UserCard extends Component {
   <template>
     <div class="user-card">
       <h3>{{@user.name}}</h3>

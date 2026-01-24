@@ -33,7 +33,7 @@ Move expensive computations from templates to cached getters in the component cl
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class StatsComponent extends Component {
+class Stats extends Component {
   @cached
   get total() {
     return this.args.items.reduce((sum, item) => sum + item.price, 0);

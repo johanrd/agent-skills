@@ -18,7 +18,7 @@ Understand how to manage service linkage, owner passing, and alternative service
 import Component from '@glimmer/component';
 import ApiService from '../services/api';
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   // ❌ Creates orphaned instance without owner
   api = new ApiService();
   
@@ -40,7 +40,7 @@ export default class UserProfileComponent extends Component {
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   // ✅ Proper injection with owner linkage
   @service api;
   
@@ -74,7 +74,7 @@ class DataTransformer {
   }
 }
 
-export default class DataProcessorComponent extends Component {
+class DataProcessor extends Component {
   @service('store') storeService;
   
   constructor(owner, args) {
@@ -131,7 +131,7 @@ import Component from '@glimmer/component';
 import { getOwner } from '@ember/application';
 import { createLogger } from '../utils/logger-factory';
 
-export default class MyComponent extends Component {
+class My extends Component {
   logger = createLogger(getOwner(this), 'MyComponent');
   
   performAction() {
@@ -155,7 +155,7 @@ import { use } from 'ember-could-get-used-to-this';
 import { ValidationService } from '../services/validation';
 import { FormStateManager } from '../utils/form-state';
 
-export default class AdvancedFormComponent extends Component {
+class AdvancedForm extends Component {
   // Explicitly request services with use()
   @use validation = ValidationService;
   
@@ -185,7 +185,7 @@ import Component from '@glimmer/component';
 import { provide } from 'ember-provide-consume-context';
 import { DashboardContext } from '../contexts/dashboard';
 
-export default class DashboardContainerComponent extends Component {
+class DashboardContainer extends Component {
   // Provide context to child components
   @provide(DashboardContext)
   dashboardContext = {
@@ -208,7 +208,7 @@ import Component from '@glimmer/component';
 import { consume } from 'ember-provide-consume-context';
 import { DashboardContext } from '../contexts/dashboard';
 
-export default class DashboardWidgetComponent extends Component {
+class DashboardWidget extends Component {
   // Consume context from parent
   @consume(DashboardContext) dashboard;
   
@@ -251,7 +251,7 @@ class AnalyticsService extends Service {
   }
 }
 
-export default class AnalyticsTrackerComponent extends Component {
+class AnalyticsTracker extends Component {
   // Use inline service
   analytics = new AnalyticsService();
   
@@ -310,7 +310,7 @@ import Component from '@glimmer/component';
 import { getOwner, setOwner } from '@ember/application';
 import { CartService } from './service';
 
-export default class ShoppingCartComponent extends Component {
+class ShoppingCart extends Component {
   cart = (() => {
     const instance = new CartService();
     setOwner(instance, getOwner(this));
@@ -382,7 +382,7 @@ import Component from '@glimmer/component';
 import { getOwner } from '@ember/application';
 import { NotificationManager } from '../utils/notification-manager';
 
-export default class NotificationContainerComponent extends Component {
+class NotificationContainer extends Component {
   notifications = new NotificationManager(getOwner(this));
 
   <template>
@@ -441,7 +441,7 @@ export default {
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 
-export default class FeatureGatedComponent extends Component {
+class FeatureGated extends Component {
   @service featureFlags;
   
   get shouldShow() {

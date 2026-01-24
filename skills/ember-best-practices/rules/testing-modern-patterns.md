@@ -245,7 +245,7 @@ module('Integration | Component | modal', function(hooks) {
 // app/components/user-profile.gjs
 import Component from '@glimmer/component';
 
-export default class UserProfileComponent extends Component {
+class UserProfile extends Component {
   <template>
     <div class="user-profile" data-test-user-profile>
       <img 

@@ -16,7 +16,7 @@ Use modifiers (element modifiers) to handle DOM side effects and lifecycle event
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class ChartComponent extends Component {
+class Chart extends Component {
   chartInstance = null;
   
   constructor() {
