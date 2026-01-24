@@ -121,56 +121,114 @@ module('Integration | Component | search-box', function(hooks) {
 **Testing with ember-concurrency tasks:**
 
 ```glimmer-js
+// app/components/async-button.js
+import Component from '@glimmer/component';
+import { task } from 'ember-concurrency';
+
+export default class AsyncButtonComponent extends Component {
+  @task
+  *saveTask() {
+    yield this.args.onSave();
+  }
+
+  <template>
+    <button 
+      type="button"
+      disabled={{this.saveTask.isRunning}}
+      {{on "click" (perform this.saveTask)}}
+      data-test-button
+    >
+      {{#if this.saveTask.isRunning}}
+        <span data-test-loading-spinner>Saving...</span>
+      {{else}}
+        {{yield}}
+      {{/if}}
+    </button>
+  </template>
+}
+```
+
+```glimmer-js
 // tests/integration/components/async-button-test.js
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, settled } from '@ember/test-helpers';
-import { task } from 'ember-concurrency';
+import { render, click } from '@ember/test-helpers';
 import AsyncButton from 'my-app/components/async-button';
 
 module('Integration | Component | async-button', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it shows loading state', async function(assert) {
+  test('it shows loading state during task execution', async function(assert) {
     let resolveTask;
-    const asyncTask = task(async () => {
-      await new Promise(resolve => { resolveTask = resolve; });
-    });
+    const onSave = () => {
+      return new Promise(resolve => { resolveTask = resolve; });
+    };
     
     await render(<template>
-      <AsyncButton @task={{asyncTask}}>
-        Click me
+      <AsyncButton @onSave={{onSave}}>
+        Save
       </AsyncButton>
     </template>);
     
+    // Trigger the task
     await click('[data-test-button]');
     
+    // ember-concurrency automatically registers test waiters
+    // The button will be disabled while the task runs
     assert.dom('[data-test-button]').hasAttribute('disabled');
-    assert.dom('[data-test-loading-spinner]').exists();
+    assert.dom('[data-test-loading-spinner]').hasText('Saving...');
     
+    // Resolve the task
     resolveTask();
-    // settled() waits for test-waiters automatically
-    await settled();
+    // No need to call settled() - ember-concurrency's test waiters handle this
     
+    assert.dom('[data-test-button]').doesNotExist('[disabled]');
     assert.dom('[data-test-loading-spinner]').doesNotExist();
+    assert.dom('[data-test-button]').hasText('Save');
   });
-});```
+});
+```
 
-**Route testing:**
+**When to use test-waiters with ember-concurrency:**
+
+- **ember-concurrency auto-registers test waiters** - You don't need to manually register test waiters for ember-concurrency tasks. The library automatically waits for tasks to complete before test helpers like `click()`, `fillIn()`, etc. resolve.
+
+- **You still need test-waiters when:**
+  - Using raw Promises outside of ember-concurrency tasks
+  - Working with third-party async operations that don't integrate with Ember's test waiter system
+  - Creating custom async behavior that needs to pause test execution
+
+- **You DON'T need additional test-waiters when:**
+  - Using ember-concurrency tasks (already handled)
+  - Using Ember Data operations (already handled)
+  - Using `@ember/test-helpers` like `settled()`, `waitFor()`, `waitUntil()` (these already coordinate with test waiters)
+
+**Route testing with MSW (Mock Service Worker):**
 
 ```javascript
 // tests/acceptance/posts-test.js
 import { module, test } from 'qunit';
 import { visit, currentURL, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { setupMirage } from 'ember-cli-mirage/test-support';
+import { http, HttpResponse } from 'msw';
+import { setupMSW } from 'my-app/tests/helpers/msw';
 
 module('Acceptance | posts', function(hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
+  const { server } = setupMSW(hooks);
 
   test('visiting /posts', async function(assert) {
-    this.server.createList('post', 3);
+    server.use(
+      http.get('/api/posts', () => {
+        return HttpResponse.json({
+          data: [
+            { id: '1', type: 'post', attributes: { title: 'Post 1' } },
+            { id: '2', type: 'post', attributes: { title: 'Post 2' } },
+            { id: '3', type: 'post', attributes: { title: 'Post 3' } }
+          ]
+        });
+      })
+    );
     
     await visit('/posts');
     
@@ -179,19 +237,31 @@ module('Acceptance | posts', function(hooks) {
   });
   
   test('clicking a post navigates to detail', async function(assert) {
-    const post = this.server.create('post', { 
-      title: 'Test Post',
-      slug: 'test-post'
-    });
+    server.use(
+      http.get('/api/posts', () => {
+        return HttpResponse.json({
+          data: [
+            { id: '1', type: 'post', attributes: { title: 'Test Post', slug: 'test-post' } }
+          ]
+        });
+      }),
+      http.get('/api/posts/test-post', () => {
+        return HttpResponse.json({
+          data: { id: '1', type: 'post', attributes: { title: 'Test Post', slug: 'test-post' } }
+        });
+      })
+    );
     
     await visit('/posts');
     await click('[data-test-post-item]:first-child');
     
-    assert.strictEqual(currentURL(), `/posts/${post.slug}`);
+    assert.strictEqual(currentURL(), '/posts/test-post');
     assert.dom('[data-test-post-title]').hasText('Test Post');
   });
 });
 ```
+
+**Note:** Use MSW (Mock Service Worker) for API mocking instead of Mirage. MSW provides better conventions and doesn't lead developers astray. See `testing-msw-setup.md` for detailed setup instructions.
 
 **Accessibility testing:**
 
