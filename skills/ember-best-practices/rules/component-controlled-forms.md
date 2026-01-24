@@ -18,7 +18,7 @@ Over-engineering forms with JavaScript when native browser features provide vali
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-export default class SignupForm extends Component {
+class SignupForm extends Component {
   @tracked email = '';
   @tracked emailError = '';
   
@@ -63,7 +63,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 
-export default class SignupForm extends Component {
+class SignupForm extends Component {
   @tracked validationErrors = null;
 
   handleSubmit = (event) => {
@@ -122,7 +122,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 
-export default class ValidatedForm extends Component {
+class ValidatedForm extends Component {
   @tracked errors = new Map();
 
   handleInput = (event) => {
@@ -234,7 +234,7 @@ For business logic validation beyond HTML5 constraints:
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 
-export default class PasswordMatchForm extends Component {
+class PasswordMatchForm extends Component {
   validatePasswordMatch = (event) => {
     const form = event.target.form;
     const password = form.querySelector('[name="password"]');
@@ -295,7 +295,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 
-export default class LiveSearch extends Component {
+class LiveSearch extends Component {
   @tracked query = '';
 
   updateQuery = (event) => {

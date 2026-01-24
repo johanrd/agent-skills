@@ -18,7 +18,7 @@ The section ID (in parentheses) is the filename prefix used to group rules.
 ## 3. Component and Reactivity Optimization (component)
 
 **Impact:** HIGH  
-**Description:** Proper use of Glimmer components, tracked properties, and avoiding unnecessary recomputation improves rendering performance.
+**Description:** Proper use of Glimmer components, modern file conventions, tracked properties, and avoiding unnecessary recomputation improves rendering performance.
 
 ## 4. Accessibility Best Practices (a11y)
 

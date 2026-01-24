@@ -24,7 +24,7 @@ export default helper(function isEqual([a, b]) {
 // app/components/user-badge.gjs
 import isEqual from '../helpers/is-equal';
 
-export default class UserBadge extends Component {
+class UserBadge extends Component {
   <template>
     {{#if (isEqual @user.role "admin")}}
       <span class="badge">Admin</span>
@@ -43,7 +43,7 @@ Use built-in helpers that ship with Ember:
 import Component from '@glimmer/component';
 import { eq } from '@ember/helper';
 
-export default class UserBadge extends Component {
+class UserBadge extends Component {
   <template>
     {{! Built-in eq helper }}
     {{#if (eq @user.role "admin")}}
@@ -60,7 +60,7 @@ export default class UserBadge extends Component {
 import Component from '@glimmer/component';
 import { eq, not, and, or, lt, lte, gt, gte } from '@ember/helper';
 
-export default class ComparisonExamples extends Component {
+class ComparisonExamples extends Component {
   <template>
     {{! Equality }}
     {{#if (eq @status "active")}}Active{{/if}}
@@ -89,7 +89,7 @@ import Component from '@glimmer/component';
 import { array, hash } from '@ember/helper';
 import { get } from '@ember/helper';
 
-export default class CollectionHelpers extends Component {
+class CollectionHelpers extends Component {
   <template>
     {{! Create array inline }}
     {{#each (array "apple" "banana" "cherry") as |fruit|}}
@@ -114,7 +114,7 @@ export default class CollectionHelpers extends Component {
 import Component from '@glimmer/component';
 import { concat } from '@ember/helper';
 
-export default class StringHelpers extends Component {
+class StringHelpers extends Component {
   <template>
     {{! Concatenate strings }}
     <p class={{concat "user-" @user.id "-card"}}>
@@ -138,7 +138,7 @@ import Component from '@glimmer/component';
 import { fn } from '@ember/helper';
 import { on } from '@ember/modifier';
 
-export default class ActionHelpers extends Component {
+class ActionHelpers extends Component {
   updateValue = (field, event) => {
     this.args.onChange(field, event.target.value);
   };
@@ -172,7 +172,7 @@ export default class ActionHelpers extends Component {
 import Component from '@glimmer/component';
 import { if as ifHelper } from '@ember/helper';
 
-export default class ConditionalInline extends Component {
+class ConditionalInline extends Component {
   <template>
     {{! Ternary-like behavior }}
     <span class={{ifHelper @isActive "active" "inactive"}}>
@@ -198,7 +198,7 @@ export default class ConditionalInline extends Component {
 import Component from '@glimmer/component';
 import { concat, if as ifHelper, and } from '@ember/helper';
 
-export default class DynamicClasses extends Component {
+class DynamicClasses extends Component {
   <template>
     <div class={{concat
       "card "
@@ -219,7 +219,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { cached } from '@glimmer/tracking';
 
-export default class FilteredList extends Component {
+class FilteredList extends Component {
   @tracked filter = 'all';
 
   @cached
@@ -260,7 +260,7 @@ import {
 } from '@ember/helper';
 import { on } from '@ember/modifier';
 
-export default class UserProfileCard extends Component {
+class UserProfileCard extends Component {
   updateField = (field, value) => {
     this.args.onUpdate(field, value);
   };

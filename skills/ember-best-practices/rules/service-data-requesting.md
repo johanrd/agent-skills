@@ -100,7 +100,7 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { restartableTask, timeout } from 'ember-concurrency';
 
-export default class SearchResults extends Component {
+class SearchResults extends Component {
   @service store;
   @tracked results = [];
 

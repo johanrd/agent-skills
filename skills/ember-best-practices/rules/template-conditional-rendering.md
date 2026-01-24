@@ -17,7 +17,7 @@ Inefficient conditional logic causes excessive re-renders, creates complex templ
 // app/components/user-list.gjs
 import Component from '@glimmer/component';
 
-export default class UserList extends Component {
+class UserList extends Component {
   <template>
     {{#each @users as |user|}}
       <div class="user">
@@ -46,7 +46,7 @@ Use `{{#if}}` / `{{#else if}}` / `{{#else}}` chains and extract computed logic t
 // app/components/user-list.gjs
 import Component from '@glimmer/component';
 
-export default class UserList extends Component {
+class UserList extends Component {
   <template>
     {{#each @users as |user|}}
       <div class="user">
@@ -72,7 +72,7 @@ For complex conditions, use getters:
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class UserCard extends Component {
+class UserCard extends Component {
   @cached
   get isActive() {
     return this.args.user.status === 'active' && 
@@ -115,7 +115,7 @@ Use `{{#if}}` to guard `{{#each}}` and avoid rendering empty states:
 // app/components/task-list.gjs
 import Component from '@glimmer/component';
 
-export default class TaskList extends Component {
+class TaskList extends Component {
   get hasTasks() {
     return this.args.tasks?.length > 0;
   }
@@ -158,7 +158,7 @@ export default class TaskList extends Component {
 import Component from '@glimmer/component';
 import { cached } from '@glimmer/tracking';
 
-export default class ContentGate extends Component {
+class ContentGate extends Component {
   @cached
   get canViewPremium() {
     return this.args.user?.isPremium && this.args.user?.hasAccess;
@@ -186,7 +186,7 @@ import VideoPlayer from './video-player';
 import AudioPlayer from './audio-player';
 import { cached } from '@glimmer/tracking';
 
-export default class MediaViewer extends Component {
+class MediaViewer extends Component {
   @cached
   get mediaType() {
     return this.args.media?.type;
@@ -239,7 +239,7 @@ class DataResource extends Resource {
   }
 }
 
-export default class DataDisplay extends Component {
+class DataDisplay extends Component {
   @resource data = DataResource.from(() => ({
     url: this.args.url
   }));
