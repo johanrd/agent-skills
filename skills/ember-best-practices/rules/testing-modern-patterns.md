@@ -201,7 +201,8 @@ module('Integration | Component | async-button', function(hooks) {
 - **You DON'T need additional test-waiters when:**
   - Using ember-concurrency tasks (already handled)
   - Using Ember Data operations (already handled)
-  - Using `@ember/test-helpers` like `settled()`, `waitFor()`, `waitUntil()` (these already coordinate with test waiters)
+  - Using `settled()` from `@ember/test-helpers` (already coordinates with test waiters)
+  - **Note**: `waitFor()` and `waitUntil()` from `@ember/test-helpers` are code smells - if you need them, it indicates missing test-waiters in your code. Instrument your async operations with test-waiters instead.
 
 **Route testing with MSW (Mock Service Worker):**
 
