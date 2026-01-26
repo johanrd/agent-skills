@@ -6,24 +6,25 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 ## Available Skills
 
-### react-best-practices
+### ember-best-practices
 
-React and Next.js performance optimization guidelines from Vercel Engineering. Contains 40+ rules across 8 categories, prioritized by impact.
+Ember.js performance optimization and accessibility guidelines from the Ember.js community. Contains 42+ rules across 7 categories, prioritized by impact.
 
 **Use when:**
-- Writing new React components or Next.js pages
-- Implementing data fetching (client or server-side)
+- Writing new Ember components or routes
+- Implementing data fetching with WarpDrive
 - Reviewing code for performance issues
 - Optimizing bundle size or load times
+- Implementing accessibility features
 
 **Categories covered:**
-- Eliminating waterfalls (Critical)
-- Bundle size optimization (Critical)
-- Server-side performance (High)
-- Client-side data fetching (Medium-High)
-- Re-render optimization (Medium)
-- Rendering performance (Medium)
-- JavaScript micro-optimizations (Low-Medium)
+- Route Loading and Data Fetching (Critical)
+- Build and Bundle Optimization (Critical)
+- Component and Reactivity (High)
+- Accessibility Best Practices (High)
+- Service and State Management (Medium-High)
+- Template Optimization (Medium)
+- Advanced Patterns (Low-Medium)
 
 ### web-design-guidelines
 
@@ -94,10 +95,10 @@ Skills are automatically available once installed. The agent will use them when 
 Deploy my app
 ```
 ```
-Review this React component for performance issues
+Review this Ember component for performance issues
 ```
 ```
-Help me optimize this Next.js page
+Help me optimize this Ember.js route
 ```
 
 ## Skill Structure
