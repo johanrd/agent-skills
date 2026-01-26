@@ -117,7 +117,7 @@ ember install ember-resize-observer-modifier
 import onResize from 'ember-resize-observer-modifier';
 
 <template>
-  <div {{on-resize this.handleResize}}>
+  <div {{onResize this.handleResize}}>
     Content that responds to size changes
   </div>
 </template>```
