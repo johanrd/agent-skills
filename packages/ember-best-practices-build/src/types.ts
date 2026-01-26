@@ -1,5 +1,5 @@
 /**
- * Type definitions for React Performance Guidelines rules
+ * Type definitions for Ember Best Practices rules (performance and accessibility)
  */
 
 export type ImpactLevel = 'CRITICAL' | 'HIGH' | 'MEDIUM-HIGH' | 'MEDIUM' | 'LOW-MEDIUM' | 'LOW'

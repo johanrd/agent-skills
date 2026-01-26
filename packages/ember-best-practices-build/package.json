@@ -1,7 +1,7 @@
 {
-  "name": "react-best-practices-build",
+  "name": "ember-best-practices-build",
   "version": "1.0.0",
-  "description": "Build tooling for React Best Practices skill",
+  "description": "Build tooling for Ember Best Practices skill",
   "type": "module",
   "scripts": {
     "build": "pnpm build-agents && pnpm extract-tests",
@@ -12,7 +12,8 @@
     "dev": "pnpm build && pnpm validate"
   },
   "keywords": [
-    "react",
+    "ember",
+    "emberjs",
     "performance",
     "guidelines",
     "llm",
