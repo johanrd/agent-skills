@@ -4,6 +4,8 @@ A collection of skills for AI coding agents. Skills are packaged instructions an
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
+See [the RFC](https://github.com/emberjs/rfcs/pull/1165) for todos for things that should/could go in this repo
+
 ## Ember Best Practices (Progressive Disclosure)
 
 For Ember.js projects, use the **agents-md codemod** to inject a minimal AGENTS.md that references best practices loaded on demand:
